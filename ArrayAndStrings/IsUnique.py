@@ -7,10 +7,8 @@
 #117 Could a bit vector be useful?
 #132 Can you solve it in O(N log N) time? What might a solution like that look like?
 
-import numpy as np
-
-def IsUnique(s):
-    l = len(s)
-    return l
+def IsUnique(text):
+    letters = set(text)
+    return len(text) == len(letters)
 
 print(IsUnique("abc"))
