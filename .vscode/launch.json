@@ -203,6 +203,26 @@
             "port": 3000,
             "secret": "my_secret",
             "host": "localhost"
+        },
+        {
+            "name": ".NET Core Launch (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceRoot}/CSharp/ArrayAndStrings/bin/Debug/netcoreapp2.0/ArrayAndStrings.dll",
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            // For more information about the 'console' field, see https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md#console-terminal-window
+            "console": "internalConsole",
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
         }
     ]
 }
