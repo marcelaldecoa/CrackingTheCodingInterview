@@ -13,8 +13,25 @@ namespace ArrayAndStrings {
     ***********************************************************************************************/
     class IsUnique {
         public static void Run(){
-            BruteForce("abcd");            
-            Optimized("abcd");
+            //Prepare input
+            var inputSize = 256;
+            var input = new char[inputSize];
+
+            for (int i=0; i < inputSize; i++) {
+                input[i] = (char)i;    
+            }
+
+
+            System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
+ 
+            Optimized(new String(input));
+            watch.Stop();
+            Console.WriteLine($"Elapsed Time: { watch.Elapsed}");
+            
+            watch = System.Diagnostics.Stopwatch.StartNew();  
+            BruteForce(new String(input)); 
+            watch.Stop();
+            Console.WriteLine($"Elapsed Time: { watch.Elapsed}");
         }
 
 
@@ -31,7 +48,7 @@ namespace ArrayAndStrings {
 
             bool isUnique = input.Length == characterMap.Count;
             
-            Console.WriteLine($"The text {input} has unique characteres: {isUnique}");
+            Console.WriteLine($"Optimized - The text has unique characteres: {isUnique}");
         }
 
         //Time Complexity: O(n^2)
@@ -57,7 +74,7 @@ namespace ArrayAndStrings {
                 }
             }
 
-            Console.WriteLine($"The text {input} has unique characteres: {isUnique}");
+            Console.WriteLine($"Brute Force - The text has unique characteres: {isUnique}");
         }
     }
 }
