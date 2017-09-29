@@ -13,24 +13,34 @@ namespace ArrayAndStrings {
     ***********************************************************************************************/
     class IsUnique {
         public static void Run(){
+
+            var content = new char[256];
+            for (int i = 0; i < 256; i++) {
+                content[i] = (char)i;
+            }
+
             //Prepare input
-            var input ="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam faucibus lectus eros, sit amet facilisis nibh tempor vulputate. Fusce scelerisque pharetra risus, non varius ante mollis non. Nam turpis mauris, vehicula quis rhoncus sit amet, egestas efficitur leo. Donec eget leo laoreet turpis duis. ";
+            var input = new String(content);
 
 
             System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
  
+            for (int i = 0; i < 100; i++) {
+               var isUnique = BruteForce(input);                 
+            }
           
-            var  isUnique = BruteForce(input);
-            watch.Stop();
-            Console.WriteLine($"Brute Force - The text has unique characteres: {isUnique}");
-            Console.WriteLine($"Elapsed Time: { watch.Elapsed}");
+            watch.Stop();            
+            Console.WriteLine($"BruteForce - Elapsed Time: { watch.Elapsed}");
+            
             
             watch = System.Diagnostics.Stopwatch.StartNew();  
-
-            isUnique = Optimized(input);
+            
+            for (int i = 0; i < 100; i++) {                
+                Optimized(input);
+            }
+            
             watch.Stop();
-            Console.WriteLine($"Optimized - The text has unique characteres: {isUnique}");
-            Console.WriteLine($"Elapsed Time: { watch.Elapsed}");
+            Console.WriteLine($"Optimized - Elapsed Time: { watch.Elapsed}");
         }
 
 
@@ -38,13 +48,20 @@ namespace ArrayAndStrings {
         //Time Complexity: ????
         static bool Optimized(string input){
             
-            System.Collections.Hashtable characterMap = new System.Collections.Hashtable();
-
+            System.Collections.BitArray bitArray = new System.Collections.BitArray(256);
+            bitArray.SetAll(false);
+    
             for (int i = 0; i < input.Length; i++) {
-                characterMap[input[i]] = 1;
+                var charInt = (int)input[i];
+
+                if(charInt > 255 || bitArray.Get(charInt)) {
+                    return false;
+                }
+
+                bitArray.Set(charInt, true);
             }
 
-           return input.Length == characterMap.Count;
+            return true;
         }
 
         //Time Complexity: O(n^2)
