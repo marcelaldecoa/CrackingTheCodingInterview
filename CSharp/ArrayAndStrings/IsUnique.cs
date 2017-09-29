@@ -30,17 +30,17 @@ namespace ArrayAndStrings {
             }
           
             watch.Stop();            
-            Console.WriteLine($"BruteForce - Elapsed Time: { watch.Elapsed}");
+            Console.WriteLine($"BruteForce - Elapsed Time: { watch.ElapsedTicks}");
             
             
-            watch = System.Diagnostics.Stopwatch.StartNew();  
+            watch = System.Diagnostics.Stopwatch.StartNew();
             
             for (int i = 0; i < 100; i++) {                
                 Optimized(input);
             }
             
             watch.Stop();
-            Console.WriteLine($"Optimized - Elapsed Time: { watch.Elapsed}");
+            Console.WriteLine($"Optimized - Elapsed Time: { watch.ElapsedTicks}");
         }
 
 
@@ -54,7 +54,7 @@ namespace ArrayAndStrings {
             for (int i = 0; i < input.Length; i++) {
                 var charInt = (int)input[i];
 
-                if(charInt > 255 || bitArray.Get(charInt)) {
+                if(charInt >= bitArray.Length || bitArray.Get(charInt)) {
                     return false;
                 }
 
