@@ -12,35 +12,51 @@ namespace ArrayAndStrings {
     *  132 Can you solve it in O(N log N) time? What might a solution like that look like?
     ***********************************************************************************************/
     class IsUnique {
-        public static void Run(){
+        public static void Run() {
 
-            var content = new char[256];
-            for (int i = 0; i < 256; i++) {
-                content[i] = (char)i;
+            for(int ix = 1; ix < 256; ix = ix *2) {
+
+                var content = new char[ix];
+                for (int i = 0; i < ix; i++) {
+                    content[i] = (char)i;
+                }
+                var input = new String(content);
+
+                System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
+                Optimized(input);   
+                watch.Stop();
+                Console.WriteLine($"{ix} - {watch.Elapsed}");
+
             }
 
-            //Prepare input
-            var input = new String(content);
+
+            // var content = new char[256];
+            // for (int i = 0; i < 256; i++) {
+            //     content[i] = (char)i;
+            // }
+
+            // //Prepare input
+            // var input = new String(content);
 
 
-            System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
+            // System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
  
-            for (int i = 0; i < 100; i++) {
-               var isUnique = BruteForce(input);                 
-            }
+            // for (int i = 0; i < 100; i++) {
+            //    var isUnique = BruteForce(input);                 
+            // }
           
-            watch.Stop();            
-            Console.WriteLine($"BruteForce - Elapsed Time: { watch.ElapsedTicks}");
+            // watch.Stop();            
+            // Console.WriteLine($"BruteForce - Elapsed Time: { watch.ElapsedTicks}");
             
             
-            watch = System.Diagnostics.Stopwatch.StartNew();
+            // watch = System.Diagnostics.Stopwatch.StartNew();
             
-            for (int i = 0; i < 100; i++) {                
-                Optimized(input);
-            }
+            // for (int i = 0; i < 100; i++) {                
+            //     Optimized(input);
+            // }
             
-            watch.Stop();
-            Console.WriteLine($"Optimized - Elapsed Time: { watch.ElapsedTicks}");
+            // watch.Stop();
+            // Console.WriteLine($"Optimized - Elapsed Time: { watch.ElapsedTicks}");
         }
 
 
@@ -48,8 +64,7 @@ namespace ArrayAndStrings {
         //Time Complexity: ????
         static bool Optimized(string input){
             
-            System.Collections.BitArray bitArray = new System.Collections.BitArray(256);
-            bitArray.SetAll(false);
+            System.Collections.BitArray bitArray = new System.Collections.BitArray(256, false);
     
             for (int i = 0; i < input.Length; i++) {
                 var charInt = (int)input[i];
