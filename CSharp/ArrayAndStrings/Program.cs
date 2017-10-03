@@ -6,7 +6,8 @@ namespace ArrayAndStrings
     {
         static void Main(string[] args)
         {
-            IsUnique.Run();
+            //IsUnique.Run();
+            CheckPermutation.Run();
         }
     }
 }

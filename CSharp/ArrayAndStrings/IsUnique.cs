@@ -61,7 +61,7 @@ namespace ArrayAndStrings {
 
 
         //Target Time Complexity: O(n log n)
-        //Time Complexity: ????
+        //Time Complexity: O(log N)
         static bool Optimized(string input){
             
             System.Collections.BitArray bitArray = new System.Collections.BitArray(256, false);
