@@ -17,15 +17,40 @@ namespace ArrayAndStrings {
     class CheckPermutation {
         public static void Run() {
            
-            
            System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
+            Console.WriteLine(Optimized("a", "a"));           
+           watch.Stop();
+           Console.WriteLine($"{1} - {watch.Elapsed}");
+
+           watch = System.Diagnostics.Stopwatch.StartNew();
+            Console.WriteLine(Optimized("ab", "ba"));           
+           watch.Stop();
+           Console.WriteLine($"{2} - {watch.Elapsed}");
            
-           for(int i = 0; i < 1000; i++) {
-            Console.WriteLine(BruteForce("abcdefghijklmnoprstuvwxyzabcdefgabcdefghijklmnoprstuvwxyzabcdefg", "ermabscditfeufcgwdzxnybjavoglhkpermabscditfeufcgwdzxnybjavoglhkp"));           
-          
-           }
-            watch.Stop();
-           Console.WriteLine($"{64} - {watch.Elapsed}");          
+           watch = System.Diagnostics.Stopwatch.StartNew();
+            Console.WriteLine(Optimized("abcd", "cdba"));           
+           watch.Stop();
+           Console.WriteLine($"{4} - {watch.Elapsed}");
+
+           watch = System.Diagnostics.Stopwatch.StartNew();
+            Console.WriteLine(Optimized("abcdefgh", "efcdbagh"));           
+           watch.Stop();
+           Console.WriteLine($"{8} - {watch.Elapsed}");
+
+           watch = System.Diagnostics.Stopwatch.StartNew();
+            Console.WriteLine(Optimized("abcdefghijklmnop", "emifcdnbjaoglhkp"));          
+           watch.Stop();
+           Console.WriteLine($"{16} - {watch.Elapsed}");
+
+           watch = System.Diagnostics.Stopwatch.StartNew();
+            Console.WriteLine(Optimized("abcdefghijklmnoprstuvwxyzabcdefg", "ermabscditfeufcgwdzxnybjavoglhkp"));           
+           watch.Stop();
+           Console.WriteLine($"{32} - {watch.Elapsed}");   
+
+            watch = System.Diagnostics.Stopwatch.StartNew();
+            Console.WriteLine(Optimized("abcdefghijklmnoprstuvwxyzabcdefgabcdefghijklmnoprstuvwxyzabcdefg", "ermabscditfeufcgwdzxnybjavoglhkpermabscditfeufcgwdzxnybjavoglhkp"));           
+           watch.Stop();
+           Console.WriteLine($"{64} - {watch.Elapsed}");         
            
            
         }
@@ -56,25 +81,26 @@ namespace ArrayAndStrings {
         //Time Complexity: O(n^2)
         static bool BruteForce(string input, string input2){
 
-            if(input.Length != input2.Length) {
+             if(input.Length != input2.Length) {
                 return false;
             }
 
+            System.Collections.Generic.List<char> input2Array = input2.ToList();
             bool isPermutation = true;
 
             for (int i = 0; i < input.Length; i++) {
                 
                 int indexOf = -1;
-                
-                for (int i2 = 0; i2 < input2.Length; i2++) {
-                    if(input2[i2].Equals(input[i])) {
+
+                for (int i2 = 0; i2 < input2Array.Count; i2++) {
+                    if(input2Array[i2].Equals(input[i])) {
                         indexOf = i2;
                         break;
                     }
                 }
 
                 if(indexOf >= 0) {
-                    input2[indexOf] = (char)0;
+                    input2Array.RemoveAt(indexOf);
                 } else {
                     isPermutation = false;
                     break;
