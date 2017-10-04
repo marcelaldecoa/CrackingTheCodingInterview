@@ -50,7 +50,7 @@ namespace ArrayAndStrings {
                  }
             }   
 
-            return true
+            return true;
         }
 
         //Time Complexity: O(n^2)
