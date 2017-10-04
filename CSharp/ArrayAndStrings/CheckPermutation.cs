@@ -16,7 +16,6 @@ namespace ArrayAndStrings {
     ***********************************************************************************************/
     class CheckPermutation {
         public static void Run() {
-
            
             
            System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
@@ -40,7 +39,7 @@ namespace ArrayAndStrings {
             for (int i = 0; i < input.Length; i++) {
                  arrayx[input[i], 0] += 1;
             }
-            
+
             for (int i = 0; i < input2.Length; i++) {
                  arrayx[input[i], 0] -= 1;
             }   
