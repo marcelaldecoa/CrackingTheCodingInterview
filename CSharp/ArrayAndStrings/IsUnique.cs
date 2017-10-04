@@ -23,7 +23,7 @@ namespace ArrayAndStrings {
                 var input = new String(content);
 
                 System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
-                Optimized(input);   
+                BruteForce(input);   
                 watch.Stop();
                 Console.WriteLine($"{ix} - {watch.Elapsed}");
 
@@ -62,8 +62,8 @@ namespace ArrayAndStrings {
 
         //Target Time Complexity: O(n log n)
         //Time Complexity: O(log N)
-        static bool Optimized(string input){
-            
+        static bool Optimized(string input) {
+
             System.Collections.BitArray bitArray = new System.Collections.BitArray(256, false);
     
             for (int i = 0; i < input.Length; i++) {
