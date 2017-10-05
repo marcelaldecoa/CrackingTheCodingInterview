@@ -66,11 +66,12 @@ namespace ArrayAndStrings {
 
             for (int i = 0; i < input.Length; i++) {
                  arrayx[input[i], 0] += 1;
+                 arrayx[input2[i], 0] -= 1;
             }
 
-            for (int i = 0; i < input2.Length; i++) {
-                 arrayx[input2[i], 0] -= 1;
-            }   
+            // for (int i = 0; i < input2.Length; i++) {
+            //      arrayx[input2[i], 0] -= 1;
+            // }   
 
             for (int i = 0; i < arrayx.Length; i++) {
                  if(arrayx[i, 0] != 0) {
