@@ -7,7 +7,8 @@ namespace ArrayAndStrings
         static void Main(string[] args)
         {
             //IsUnique.Run();
-            CheckPermutation.Run();
+            //CheckPermutation.Run();
+            URLify.Run();
         }
     }
 }
