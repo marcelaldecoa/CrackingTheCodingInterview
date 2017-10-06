@@ -16,42 +16,47 @@ namespace ArrayAndStrings {
     ***********************************************************************************************/
     class CheckPermutation {
         public static void Run() {
-           
-           System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(Optimized("a", "a"));           
-           watch.Stop();
-           Console.WriteLine($"{1} - {watch.Elapsed}");
 
-           watch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(Optimized("ab", "ba"));           
-           watch.Stop();
-           Console.WriteLine($"{2} - {watch.Elapsed}");
-           
-           watch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(Optimized("abcd", "cdba"));           
-           watch.Stop();
-           Console.WriteLine($"{4} - {watch.Elapsed}");
+            Console.WriteLine("Input size = 1");
+            RunHelper.Stress( (i) => BruteForce("a", "a"),
+                              (i) => Optimized("a", "a"),
+                              100);
 
-           watch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(Optimized("abcdefgh", "efcdbagh"));           
-           watch.Stop();
-           Console.WriteLine($"{8} - {watch.Elapsed}");
+            Console.WriteLine("Input size = 2");
+            RunHelper.Stress( (i) => BruteForce("ab", "ba"),
+                              (i) => Optimized("ab", "ba"),
+                              100);
 
-           watch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(Optimized("abcdefghijklmnop", "emifcdnbjaoglhkp"));          
-           watch.Stop();
-           Console.WriteLine($"{16} - {watch.Elapsed}");
+            Console.WriteLine("Input size = 4");
+            RunHelper.Stress( (i) => BruteForce("abcd", "cdba"),
+                              (i) => Optimized("abcd", "cdba"),
+                              100);
 
-           watch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(Optimized("abcdefghijklmnoprstuvwxyzabcdefg", "ermabscditfeufcgwdzxnybjavoglhkp"));           
-           watch.Stop();
-           Console.WriteLine($"{32} - {watch.Elapsed}");   
+            Console.WriteLine("Input size = 8");
+            RunHelper.Stress( (i) => BruteForce("abcdefgh", "efcdbagh"),
+                              (i) => Optimized("abcdefgh", "efcdbagh"),
+                              100);
 
-            watch = System.Diagnostics.Stopwatch.StartNew();
-            Console.WriteLine(Optimized("abcdefghijklmnoprstuvwxyzabcdefgabcdefghijklmnoprstuvwxyzabcdefg", "ermabscditfeufcgwdzxnybjavoglhkpermabscditfeufcgwdzxnybjavoglhkp"));           
-           watch.Stop();
-           Console.WriteLine($"{64} - {watch.Elapsed}");         
-           
+            Console.WriteLine("Input size = 16");
+            RunHelper.Stress( (i) => BruteForce("abcdefghijklmnop", "emifcdnbjaoglhkp"),
+                              (i) => Optimized("abcdefghijklmnop", "emifcdnbjaoglhkp"),
+                              100);
+
+            Console.WriteLine("Input size = 32");
+            RunHelper.Stress( (i) => BruteForce("abcdefghijklmnoprstuvwxyzabcdefg", "ermabscditfeufcgwdzxnybjavoglhkp"),
+                              (i) => Optimized("abcdefghijklmnoprstuvwxyzabcdefg", "ermabscditfeufcgwdzxnybjavoglhkp"),
+                              100);
+
+            Console.WriteLine("Input size = 64");
+            RunHelper.Stress( (i) => BruteForce("abcdefghijklmnoprstuvwxyzabcdefgabcdefghijklmnoprstuvwxyzabcdefg", "ermabscditfeufcgwdzxnybjavoglhkpermabscditfeufcgwdzxnybjavoglhkp"),
+                              (i) => Optimized("abcdefghijklmnoprstuvwxyzabcdefgabcdefghijklmnoprstuvwxyzabcdefg", "ermabscditfeufcgwdzxnybjavoglhkpermabscditfeufcgwdzxnybjavoglhkp"),
+                              100);
+                              
+            Console.WriteLine("Input size = 128");
+            RunHelper.Stress( (i) => BruteForce("abcdefghijklmnoprstuvwxyzabcdefgabcdefghijklmnoprstuvwxyzabcdefgabcdefghijklmnoprstuvwxyzabcdefgabcdefghijklmnoprstuvwxyzabcdefg", "ermabscditfeufcgwdzxnybjavoglhkpermabscditfeufcgwdzxnybjavoglhkpermabscditfeufcgwdzxnybjavoglhkpermabscditfeufcgwdzxnybjavoglhkp"),
+                              (i) => Optimized("abcdefghijklmnoprstuvwxyzabcdefgabcdefghijklmnoprstuvwxyzabcdefgabcdefghijklmnoprstuvwxyzabcdefgabcdefghijklmnoprstuvwxyzabcdefg", "ermabscditfeufcgwdzxnybjavoglhkpermabscditfeufcgwdzxnybjavoglhkpermabscditfeufcgwdzxnybjavoglhkpermabscditfeufcgwdzxnybjavoglhkp"),
+                              100);
+
            
         }
 
@@ -66,18 +71,15 @@ namespace ArrayAndStrings {
 
             for (int i = 0; i < input.Length; i++) {
                  arrayx[input[i], 0] += 1;
-                 arrayx[input2[i], 0] -= 1;
             }
 
-            // for (int i = 0; i < input2.Length; i++) {
-            //      arrayx[input2[i], 0] -= 1;
-            // }   
+            for (int i = 0; i < input2.Length; i++) {
+                 arrayx[input2[i], 0] -= 1;
 
-            for (int i = 0; i < arrayx.Length; i++) {
-                 if(arrayx[i, 0] != 0) {
+                 if(arrayx[i, 0] < 0) {
                      return false;
                  }
-            }   
+            }    
 
             return true;
         }
