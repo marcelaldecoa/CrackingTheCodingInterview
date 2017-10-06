@@ -14,49 +14,20 @@ namespace ArrayAndStrings {
     class IsUnique {
         public static void Run() {
 
-            for(int ix = 1; ix < 256; ix = ix *2) {
+            string input = string.Empty;
+
+            for(int ix = 1; ix < 256; ix++) {
 
                 var content = new char[ix];
                 for (int i = 0; i < ix; i++) {
                     content[i] = (char)i;
                 }
-                var input = new String(content);
-
-                System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
-                BruteForce(input);   
-                watch.Stop();
-                Console.WriteLine($"{ix} - {watch.Elapsed}");
-
+                input = new String(content);
             }
-
-
-            // var content = new char[256];
-            // for (int i = 0; i < 256; i++) {
-            //     content[i] = (char)i;
-            // }
-
-            // //Prepare input
-            // var input = new String(content);
-
-
-            // System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
- 
-            // for (int i = 0; i < 100; i++) {
-            //    var isUnique = BruteForce(input);                 
-            // }
-          
-            // watch.Stop();            
-            // Console.WriteLine($"BruteForce - Elapsed Time: { watch.ElapsedTicks}");
             
-            
-            // watch = System.Diagnostics.Stopwatch.StartNew();
-            
-            // for (int i = 0; i < 100; i++) {                
-            //     Optimized(input);
-            // }
-            
-            // watch.Stop();
-            // Console.WriteLine($"Optimized - Elapsed Time: { watch.ElapsedTicks}");
+            RunHelper.Stress( (i) => BruteForce(input), 
+                              (i) => Optimized(input), 
+                              100);
         }
 
 
