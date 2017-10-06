@@ -9,6 +9,7 @@ namespace ArrayAndStrings
             //IsUnique.Run();
             //CheckPermutation.Run();
             URLify.Run();
+            //PalindromePermutation.Run();
         }
     }
 }

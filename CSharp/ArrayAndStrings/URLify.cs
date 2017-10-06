@@ -17,8 +17,9 @@ namespace ArrayAndStrings {
     ***********************************************************************************************/
     class URLify {
         public static void Run() {
-           Console.WriteLine(BruteForce("BRUNO OLIVEIRA  ", 14)); 
-           Console.WriteLine(BruteForce("BRUNO LINS DE OLIVEIRA      ", 22));
+           RunHelper.Stress( (i) => BruteForce("BRUNO LINS DE OLIVEIRA      ", 22), 
+                             null, 
+                             100);
         }
 
 
@@ -48,7 +49,7 @@ namespace ArrayAndStrings {
                 currentPosition--;
             }
 
-            return new String(output).TrimStart();
+            return new String(output);
         }
     }
 }
