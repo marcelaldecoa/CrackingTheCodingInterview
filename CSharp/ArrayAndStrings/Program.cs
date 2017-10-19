@@ -10,7 +10,8 @@ namespace ArrayAndStrings
             //CheckPermutation.Run();
             //URLify.Run();
             //PalindromePermutation.Run();
-            OneWay.Run();
+            //OneWay.Run();
+            StringComparison.Run();
         }
     }
 }

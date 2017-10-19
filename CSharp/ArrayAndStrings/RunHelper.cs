@@ -31,8 +31,8 @@ namespace ArrayAndStrings {
             }
 
             watch.Stop();
-            Console.WriteLine($"{name} - {watch.ElapsedTicks / iterations}");
-            return (watch.ElapsedTicks * 1.0) / iterations;
+            Console.WriteLine($"{name} - {(watch.ElapsedMilliseconds * 1.0) / iterations}");
+            return (watch.ElapsedMilliseconds * 1.0) / iterations;
         }
     }
 }

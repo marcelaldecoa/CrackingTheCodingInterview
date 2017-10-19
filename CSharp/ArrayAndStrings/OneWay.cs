@@ -49,7 +49,7 @@ namespace ArrayAndStrings {
 
         //Target Time Complexity: 
         //Time Complexity: 
-        static bool Optimized(string input, string input2) {
+        static bool Optimized(string original, string edited) {
             var editType = original.Length - edited.Length;
             var numberOfEdits = 0;
 
@@ -65,7 +65,7 @@ namespace ArrayAndStrings {
                 original = edited;
                 edited = swap;
             }
-            
+
             int counter = 0;
             int index = 0;
 
