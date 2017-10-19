@@ -30,6 +30,30 @@ namespace ArrayAndStrings {
 
 
         static bool Optimized(string input) {
+             input = input.ToLower();
+
+            int[] arrayx = new int[256];
+            int spaces = 0;
+
+            for (int i = 0; i < input.Length; i++) {
+                if (input[i] != 32) {
+                    arrayx[input[i]]++;
+                }
+                else{
+                    spaces++;
+                }
+            }
+
+             bool even = (input.Length - spaces) % 2 == 0;
+            
+            for (int i = 0; i < arrayx.Length; i++) {
+                if (arrayx[i] != 0){
+                    if(arrayx[i] == 1 && even) {
+                        return false;
+                    }
+                }
+            }
+
             return true;
         }
 

@@ -1,15 +1,15 @@
 using System;
-using System.Linq;
 
 namespace ArrayAndStrings {
 
     /***********************************************************************************************
-    *  
+    *  Threre are three types of edits that can be performed on strings: insert a character, remove a character, 
+    * or replace a character. Given two strings, write a function to check if they are one edit (or zero edits) away.
     ************************************************************************************************
     * Hints
-    *  23 
-    *  97 
-    *  130
+    *  23 Start with the easy thing. Can you  check each of the conditions separately?
+    *  97  What is the relationship between the "insert character" ooption and the "remove character" option? Do these need to be two separate checks?
+    *  130 Can you do all three checks in a single pass?
     ***********************************************************************************************/
     public class OneWay {
         public static void Run() {
@@ -18,7 +18,7 @@ namespace ArrayAndStrings {
             var input = "aanxxxaanxxxaanxxxaanxxxqawsqasw";   
             var input2 = input; 
             
-            Console.WriteLine(BruteForce("pale", "paale"));
+            Console.WriteLine(BruteForce("pale", "bake"));
             Console.WriteLine(input.Length);  
             RunHelper.Stress( (i) => BruteForce(input, input2), 
                               null, 
@@ -50,13 +50,50 @@ namespace ArrayAndStrings {
         //Target Time Complexity: 
         //Time Complexity: 
         static bool Optimized(string input, string input2) {
-            throw new NotImplementedException();
+            var editType = original.Length - edited.Length;
+            var numberOfEdits = 0;
+
+            if(System.Math.Abs(editType) > 1) {
+                return false;
+            }
+
+            string swap;
+
+            // IF ADD
+            if(editType < 0){
+                swap = original;
+                original = edited;
+                edited = swap;
+            }
+            
+            int counter = 0;
+            int index = 0;
+
+            while(numberOfEdits <= 1  
+                  && counter < original.Length
+                  && index < edited.Length) {                
+
+                bool isEqual = original[counter] == edited[index];
+
+                if(!isEqual) {
+                    numberOfEdits++;
+
+                    if(editType != 0){
+                        index--;
+                    }
+                }
+
+                index++;
+                counter++;                  
+            }
+
+            return numberOfEdits <= 1;
         }
 
         //Target Time Complexity: 
         //Time Complexity: 
-        static bool BruteForce(string input, string input2) {
-            var sizeDiff = input.Length - input2.Length;
+        static bool BruteForce(string original, string edited) {
+            var sizeDiff = original.Length - edited.Length;
             var numberOfEdits = 0;
 
             if(System.Math.Abs(sizeDiff) > 1) {
@@ -64,13 +101,13 @@ namespace ArrayAndStrings {
             }
 
             int counter = 0;
-            var index = 0;
+            int index = 0;
 
             while(numberOfEdits <= 1  
-                  && counter < input.Length
-                  && index < input2.Length) {                
+                  && counter < original.Length
+                  && index < edited.Length) {                
 
-                bool isEqual = input[counter] == input2[index];
+                bool isEqual = original[counter] == edited[index];
 
                 if(!isEqual) {
                     numberOfEdits++;

@@ -4,18 +4,25 @@ namespace ArrayAndStrings {
 
     public static class RunHelper {
 
-        public static void Stress(Action<int> bruteForce, Action<int> optimized, int iterations) {
-            
+       public static void Stress(Action<int> bruteForce, Action<int> optimized, int iterations) {
+            double bruteForceTime = 0;
+            double optimizedTime = 0;
+
             if(bruteForce != null) {                
-                Run(bruteForce, "Brute Force", iterations);
+                bruteForceTime = Run(bruteForce, "Brute Force", iterations);
             }
 
             if(optimized != null) {                
-                Run(optimized, "Optimized", iterations);
+                optimizedTime = Run(optimized, "Optimized", iterations);
             }
+
+            var optimizationDiff = bruteForceTime - optimizedTime;
+            var optimizationIndex = (optimizationDiff / bruteForceTime) * 100;
+
+            Console.WriteLine($"Optimization: {(int)optimizationIndex}%");
         }
 
-        private static void Run(Action<int> operation, string name, int iterations) {
+        private static double Run(Action<int> operation, string name, int iterations) {
             
             System.Diagnostics.Stopwatch watch = System.Diagnostics.Stopwatch.StartNew();
            
@@ -24,7 +31,8 @@ namespace ArrayAndStrings {
             }
 
             watch.Stop();
-            Console.WriteLine($"{name} - {watch.Elapsed / iterations}");
+            Console.WriteLine($"{name} - {watch.ElapsedTicks / iterations}");
+            return (watch.ElapsedTicks * 1.0) / iterations;
         }
     }
 }

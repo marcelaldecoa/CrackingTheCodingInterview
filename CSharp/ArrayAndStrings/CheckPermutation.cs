@@ -67,16 +67,16 @@ namespace ArrayAndStrings {
             if (input.Length != input2.Length)
                 return false;
 
-            int[,] arrayx = new int[256,1];
+            int[] arrayx = new int[256];
 
             for (int i = 0; i < input.Length; i++) {
-                 arrayx[input[i], 0] += 1;
+                 arrayx[input[i]] += 1;
             }
 
             for (int i = 0; i < input2.Length; i++) {
-                 arrayx[input2[i], 0] -= 1;
+                 arrayx[input2[i]] -= 1;
 
-                 if(arrayx[i, 0] < 0) {
+                 if(arrayx[i] < 0) {
                      return false;
                  }
             }    
