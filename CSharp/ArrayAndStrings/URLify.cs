@@ -17,6 +17,10 @@ namespace ArrayAndStrings {
     ***********************************************************************************************/
     class URLify {
         public static void Run() {
+
+            
+            Console.WriteLine("--------------------------------- 3.URLify -------------------------------------------");
+
            RunHelper.Stress( (i) => BruteForce("BRUNO LINS DE OLIVEIRA      ", 22), 
                              null, 
                              100);

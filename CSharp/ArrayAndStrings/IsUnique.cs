@@ -14,6 +14,9 @@ namespace ArrayAndStrings {
     class IsUnique {
         public static void Run() {
 
+            
+            Console.WriteLine("--------------------------------- 1.IsUnique -------------------------------------------");
+
             string input = string.Empty;
 
             for(int ix = 1; ix < 256; ix++) {

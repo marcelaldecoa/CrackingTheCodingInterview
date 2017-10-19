@@ -6,11 +6,11 @@ namespace ArrayAndStrings
     {
         static void Main(string[] args)
         {
-            //IsUnique.Run();
-            //CheckPermutation.Run();
-            //URLify.Run();
-            //PalindromePermutation.Run();
-            //OneWay.Run();
+            IsUnique.Run();
+            CheckPermutation.Run();
+            URLify.Run();
+            PalindromePermutation.Run();
+            OneWay.Run();
             StringComparison.Run();
         }
     }

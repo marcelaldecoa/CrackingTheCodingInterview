@@ -11,6 +11,9 @@ namespace ArrayAndStrings {
     class StringComparison {
         public static void Run() {
 
+            
+            Console.WriteLine("--------------------------------- 6.StringComparison -------------------------------------------");
+
             var shoudCompress = "aaaabbbbbccccaaa";            
             var shouldNotCompress = "aaaabca";
             
@@ -23,21 +26,35 @@ namespace ArrayAndStrings {
         //    Console.WriteLine($"Compressed : {Optimized(shouldNotCompress) != shouldNotCompress}");
 
 
-            Console.WriteLine($"Input size = {shoudCompress.Length}");
-            RunHelper.Stress( (i) => BruteForce(shoudCompress),
-                              (i) => Optimized(shoudCompress),
-                              1000000);
 
             Console.WriteLine($"Input size = {shouldNotCompress.Length}");
             RunHelper.Stress( (i) => BruteForce(shouldNotCompress),
                               (i) => Optimized(shouldNotCompress),
-                              1000000);
+                              100);
+
+            Console.WriteLine($"Input size = {shoudCompress.Length}");
+            RunHelper.Stress( (i) => BruteForce(shoudCompress),
+                              (i) => Optimized(shoudCompress),
+                              100);
             
             var input = "aaaaaaaaaaabcdefghijklmnooooooooooooooooprstuvwxyzabcdeffffffffgabccccccdefghijklmnoprstuvwwwwwwwwwwwwwwwwwxyzabcdeffffffffffffffffffgabcdeeeeefghijklmnoprstuwwwwvwwwwwwwwwwxyzabcdefgabcdefghijklmnoprstuvwxyzabcdefg";            
             Console.WriteLine($"Input size = {input.Length}");
             RunHelper.Stress( (i) => BruteForce(input),
                               (i) => Optimized(input),
-                              1000000);
+                              100);
+           
+            input = "aaaaaaaaaaabcfffffffffffffffffffffffffflllllllllllllllllllllllllllllllllllllrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrraaaaaaaaaaaaaaaaaaaaaannnnnnnnnnnnnnnnnnnVVVVVVVVVVVVVVVVVVVVVVEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEeeeudsjsndlsnffsdjkfjkdsfkfnfdkffnskjfnvnnjjfnpfnnnnnnnnnnneiijrewnrmwnrmfkjfksjfksnfjnfjfjksjkfdskjkfjskjfkssjjjjjjjjjjdefghijklmnooooooooooooooooprstuvwxyzabcdeffffffffgabccccccdefghijklmnoprstuvwwwwwwwwwwwwwwwwwxyzabcdeffffffffffffffffffgabcdeeeeefghijklmnoprstuwwwwvwwwwwwwwwwxyzabcdefgabcdefghijklmnoprstuvwxyzabcdefg";            
+            input += input += input += input;
+            Console.WriteLine($"Input size = {input.Length}");
+            RunHelper.Stress( (i) => BruteForce(input),
+                              (i) => Optimized(input),
+                              100);
+
+            input += input += input += input;
+            Console.WriteLine($"Input size = {input.Length}");
+            RunHelper.Stress( (i) => BruteForce(input),
+                              (i) => Optimized(input),
+                              100);
            
         }
 
@@ -72,10 +89,9 @@ namespace ArrayAndStrings {
             return compressed;
         }
 
-        static string Optimized(string input){
+        static string Optimized(string input) {
             int index = 1;
             int qty = 1;
-            string compressed = "";
 
             System.Text.StringBuilder builder = new System.Text.StringBuilder();
 
@@ -95,8 +111,8 @@ namespace ArrayAndStrings {
 
             builder.Append(input[index-1]);
             builder.Append(qty);
-            compressed = builder.ToString();
 
+            var compressed = builder.ToString();
             compressed = compressed.Length > input.Length ? input : compressed;
 
             // Console.WriteLine($"Input: {input}");

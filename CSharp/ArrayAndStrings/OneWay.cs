@@ -14,35 +14,62 @@ namespace ArrayAndStrings {
     public class OneWay {
         public static void Run() {
 
+            
+            Console.WriteLine("--------------------------------- 5.OneWay -------------------------------------------");
+
             //Console.WriteLine(BruteForce("pale", "pavle"));
             var input = "aanxxxaanxxxaanxxxaanxxxqawsqasw";   
             var input2 = input; 
             
             Console.WriteLine(BruteForce("pale", "bake"));
-            Console.WriteLine(input.Length);  
+
+            Console.WriteLine($"Input Size: {input.Length}"); 
             RunHelper.Stress( (i) => BruteForce(input, input2), 
-                              null, 
+                              (i) => Optimized(input, input2), 
                               1000); 
 
             input = "aanxxxaanxxxaanxxxaanxxxqawsqaswaanxxxaanxxxaanxxxaanxxxqawsqasw";   
             input2 = input; 
-            Console.WriteLine(input.Length);          
+            Console.WriteLine($"Input Size: {input.Length}");        
             RunHelper.Stress( (i) => BruteForce(input, input2), 
-                              null, 
+                              (i) => Optimized(input, input2), 
                               1000);
 
             input = "aanxxxaanxxxaanxxxaanxxxqawsqaswaanxxxaanxxxaanxxxaanxxxqawsqaswaanxxxaanxxxaanxxxaanxxxqawsqaswaanxxxaanxxxaanxxxaanxxxqawsqasw";   
             input2 = input; 
-            Console.WriteLine(input.Length);          
+            Console.WriteLine($"Input Size: {input.Length}");    
             RunHelper.Stress( (i) => BruteForce(input, input2), 
-                              null, 
+                              (i) => Optimized(input, input2), 
                               1000);
 
             input = "aanxxxaanxxxaanxxxaanxxxqawsqaswaanxxxaanxxxaanxxxaanxxxqawsqaswaanxxxaanxxxaanxxxaanxxxqawsqaswaanxxxaanxxxaanxxxaanxxxqawsqaswaanxxxaanxxxaanxxxaanxxxqawsqaswaanxxxaanxxxaanxxxaanxxxqawsqaswaanxxxaanxxxaanxxxaanxxxqawsqaswaanxxxaanxxxaanxxxaanxxxqawsqasw";   
             input2 = input; 
-            Console.WriteLine(input.Length);          
+            Console.WriteLine($"Input Size: {input.Length}");
             RunHelper.Stress( (i) => BruteForce(input, input2), 
-                              null,
+                              (i) => Optimized(input, input2), 
+                              1000);
+
+                              
+            input = "aanxxxaanxxxaanxxxaanxxxqawsqaswaanxxxaanxxxaanxxxaanxxxqawsqaswaanxxxaanxxxaanxxxaanxxxqawsqaswaanxxxaanxxxaanxxxaanxxxqawsqaswaanxxxaanxxxaanxxxaanxxxqawsqaswaanxxxaanxxxaanxxxaanxxxqawsqaswaanxxxaanxxxaanxxxaanxxxqawsqaswaanxxxaanxxxaanxxxaanxxxqawsqasw";   
+            input += input;
+            input2 = input; 
+            Console.WriteLine($"Input Size: {input.Length}");          
+            RunHelper.Stress( (i) => BruteForce(input, input2), 
+                              (i) => Optimized(input, input2), 
+                              1000);
+
+            input += input;
+            input2 = input; 
+            Console.WriteLine($"Input Size: {input.Length}");          
+            RunHelper.Stress( (i) => BruteForce(input, input2), 
+                              (i) => Optimized(input, input2), 
+                              1000);
+
+            input += input;
+            input2 = input; 
+            Console.WriteLine($"Input Size: {input.Length}");          
+            RunHelper.Stress( (i) => BruteForce(input, input2), 
+                              (i) => Optimized(input, input2), 
                               1000);
         }
 

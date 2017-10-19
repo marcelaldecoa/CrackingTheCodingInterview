@@ -22,7 +22,12 @@ namespace ArrayAndStrings {
     ***********************************************************************************************/
     public class PalindromePermutation {
         public static void Run() {
-            var input = "aanxxx naa aanxxx naa aanxxx naa aanxxx naa aanxxx naa";            
+
+            
+            Console.WriteLine("--------------------------------- 4.PalindromePermutation -------------------------------------------");
+
+            var input = "aanxxx naa aanxxx naa aanxxx naa aanxxx naa aanxxx naa"; 
+            input += input += input+= input+= input+= input+= input+= input+= input+= input+= input+= input+= input+= input+= input+= input;           
             RunHelper.Stress( (i) => BruteForce(input), 
                               (i) => Optimized(input), 
                               100);

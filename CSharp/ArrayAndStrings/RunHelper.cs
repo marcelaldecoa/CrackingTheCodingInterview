@@ -31,8 +31,8 @@ namespace ArrayAndStrings {
             }
 
             watch.Stop();
-            Console.WriteLine($"{name} - {(watch.ElapsedMilliseconds * 1.0) / iterations}");
-            return (watch.ElapsedMilliseconds * 1.0) / iterations;
+            Console.WriteLine($"{name}: Total Elapsed (msec): {watch.ElapsedMilliseconds} | Avg: {(watch.ElapsedMilliseconds * 1.0) / iterations}");
+            return watch.ElapsedMilliseconds * 1.0;
         }
     }
 }

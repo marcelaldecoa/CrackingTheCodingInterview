@@ -17,6 +17,8 @@ namespace ArrayAndStrings {
     class CheckPermutation {
         public static void Run() {
 
+            Console.WriteLine("--------------------------------- 2.CheckPermutation -------------------------------------------");
+
             Console.WriteLine("Input size = 1");
             RunHelper.Stress( (i) => BruteForce("a", "a"),
                               (i) => Optimized("a", "a"),
