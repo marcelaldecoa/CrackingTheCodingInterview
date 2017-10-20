@@ -12,6 +12,8 @@ namespace ArrayAndStrings
             PalindromePermutation.Run();
             OneWay.Run();
             StringComparison.Run();
+            RotateMatrix.Run();
+            StringRotation.Run();
         }
     }
 }
